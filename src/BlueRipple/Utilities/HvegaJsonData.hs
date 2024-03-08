@@ -21,3 +21,6 @@ brAddJSON destDir jsonName jsonVal = do
       parseRel = first show . Path.parseRelFile . toString
   jsonPath' <- K.knitEither $ ((destDir Path.</>) <$> parseRel jsonFileName)
   K.liftKnit $ A.encodeFile (Path.toFilePath jsonPath') jsonVal
+
+
+data JsonLocations a = JsonLocations { jsonDir :: Path.Path a Path.Dir, jsonUrl :: Text}
