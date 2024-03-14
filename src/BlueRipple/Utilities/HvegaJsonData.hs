@@ -10,7 +10,7 @@ import qualified Knit.Report as K
 import qualified Path
 import qualified System.Directory as SD
 
-data JsonLocations a = JsonLocations { jsonDir :: Path.Path a Path.Dir, jsonUrl :: Text}
+data JsonLocations a = JsonLocations { jsonDir :: Path.Path a Path.Dir, jsonUrl :: Text -> Text}
 
 addJSON :: K.KnitEffects r
           => JsonLocations a
