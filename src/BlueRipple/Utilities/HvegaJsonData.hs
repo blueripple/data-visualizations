@@ -10,7 +10,7 @@ import qualified Knit.Report as K
 import qualified Path
 import qualified System.Directory as SD
 
-data JsonLocations a = JsonLocations { jsonDir :: Path.Path a Path.Dir, jsonUrl :: Text -> Text}
+data JsonLocations a = JsonLocations { jsonDir :: Path.Path a Path.Dir, jsonUrlE :: Text -> Either Text Text}
 
 addJSON :: K.KnitEffects r
           => JsonLocations a
@@ -24,4 +24,4 @@ addJSON jl jsonName jsonVal = do
       parseRel = first show . Path.parseRelFile . toString
   jsonPath' <- K.knitEither $ ((destDir Path.</>) <$> parseRel jsonFileName)
   K.liftKnit $ A.encodeFile (Path.toFilePath jsonPath') jsonVal
-  pure $ jsonUrl jl jsonFileName
+  K.knitEither $ jsonUrlE jl jsonFileName
