@@ -16,7 +16,7 @@ addJSON :: K.KnitEffects r
           => JsonLocations a
           -> Text
           -> A.Value
-          -> K.Sem r ()
+          -> K.Sem r Text
 addJSON jl jsonName jsonVal = do
   let destDir = jsonDir jl
   K.liftKnit $ SD.createDirectoryIfMissing True (Path.toFilePath destDir)
@@ -24,3 +24,4 @@ addJSON jl jsonName jsonVal = do
       parseRel = first show . Path.parseRelFile . toString
   jsonPath' <- K.knitEither $ ((destDir Path.</>) <$> parseRel jsonFileName)
   K.liftKnit $ A.encodeFile (Path.toFilePath jsonPath') jsonVal
+  pure $ jsonUrl jl jsonFileName
