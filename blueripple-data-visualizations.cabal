@@ -24,6 +24,7 @@ library
   ghc-options: -Wall -O2 -fno-warn-unused-top-binds -funbox-strict-fields
   build-depends:
      blueripple-data-tools
+   , blueripple-post-tools
    , aeson >= 2.0 && < 2.5
    , array  >= 0.4 && < 0.6
    , Frames >= 0.7 && < 0.8
