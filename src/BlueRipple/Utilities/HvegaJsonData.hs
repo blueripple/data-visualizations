@@ -15,10 +15,10 @@ import qualified System.Directory as SD
 data JsonLocations a = JsonLocations { jsonDir :: Path.Path a Path.Dir, jsonUrlE :: Text -> Either Text Text}
 
 addJSON :: BRK.KnitEffects r
-          => JsonLocations a
-          -> Text
-          -> A.Value
-          -> K.Sem r Text
+        => JsonLocations a
+        -> Text
+        -> A.Value
+        -> K.Sem r Text
 addJSON jl jsonName jsonVal = do
   let destDir = jsonDir jl
   K.liftKnit $ SD.createDirectoryIfMissing True (Path.toFilePath destDir)

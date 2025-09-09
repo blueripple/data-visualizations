@@ -2,13 +2,12 @@ packages: ./
 jobs: 4
 with-compiler: ghc
 
-allow-newer: polysemy-zoo:ghc-prim, streamly-core
+allow-newer: base, ghc-prim, bytestring, time, primitive, containers, constraints
            , freer-simple:template-haskell
+           , polysemy-zoo:text
            , foldl-statistics:hashable, foldl-statistics:profunctors
            , cereal-time:time
-           , heidi:base
-           , generic-trie:base
-           , discrimination:primitive
+           , pipes-text:text
 
 flags: +streamly9
 
@@ -20,5 +19,6 @@ import: ../cabal_repo_imports/Frames-serialize.project
 import: ../cabal_repo_imports/Frames-utils.project
 import: ../cabal_repo_imports/Frames-hvega.project
 import: ../cabal_repo_imports/hvega-utils.project
+import: ../cabal_repo_imports/Frames-map-reduce.project
 import: ../cabal_repo_imports/map-reduce-folds.project
 import: ../cabal_repo_imports/heidi.project
